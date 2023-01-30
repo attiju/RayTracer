@@ -1,6 +1,6 @@
 #include "../../catch.hpp"
 
-#include "core/core.hpp"
+#include "core.hpp"
 
 TEST_CASE("radians(90) == (pi / 2)")
 {

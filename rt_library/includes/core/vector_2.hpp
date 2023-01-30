@@ -1,7 +1,7 @@
 #ifndef VECTOR_2_HH
 #define VECTOR_2_HH
 
-#include <core/core.hpp>
+#include <core.hpp>
 
 template<typename T>
 class Vector2 {
@@ -48,9 +48,9 @@ std::ostream &operator<<(std::ostream &os, const Vector2<T> &v);
 template<typename T>
 Vector2<T> operator*(Float f, const Vector2<T> &v);
 
-typedef Vector2<int> Vector2i;
+typedef Vector2<int>   Vector2i;
 typedef Vector2<Float> Vector2f;
 
-#include <core/vector_2.inl>
+#include <vector_2.inl>
 
 #endif

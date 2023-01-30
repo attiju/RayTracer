@@ -1,7 +1,7 @@
 #ifndef MATRIX_4_4_HH
 #define MATRIX_4_4_HH
 
-#include <core/core.hpp>
+#include <core.hpp>
 
 class Matrix4x4 {
 public:
@@ -42,6 +42,6 @@ inline Matrix4x4 inverse(const Matrix4x4 &M);
 
 inline Matrix4x4 transpose(const Matrix4x4 &M);
 
-#include <core/matrix_4_4.inl>
+#include <matrix_4_4.inl>
 
 #endif

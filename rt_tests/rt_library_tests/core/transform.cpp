@@ -1,6 +1,6 @@
 #include "../../catch.hpp"
 
-#include "core/transform.hpp"
+#include "transform.hpp"
 
 TEST_CASE("test_transform_default_is_identity")
 {
@@ -28,17 +28,16 @@ TEST_CASE("test_transform_translate")
     REQUIRE(T(n) == n);
 }
 
-
 TEST_CASE("test_transform_composition")
 {
     auto T1 = translate(Vector3f(0, 0, -1))
-            * scale(10, 10, 10);
+              * scale(10, 10, 10);
 
     auto T2 = scale(10, 10, 10)
-            * translate(Vector3f(0, 0, -1));
+              * translate(Vector3f(0, 0, -1));
 
     auto T3 = rotateX(90)
-            * translate(Vector3f(0, 0, -1));
+              * translate(Vector3f(0, 0, -1));
 
     REQUIRE(T1(Point3f(0, 0, 0)) == Point3f(0, 0, -1));
     REQUIRE(T2(Point3f(0, 0, 0)) == Point3f(0, 0, -10));

@@ -1,1 +1,1 @@
-#include <core/point_2.hpp>
+#include <point_2.hpp>

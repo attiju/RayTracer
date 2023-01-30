@@ -1,6 +1,6 @@
 #include "../../catch.hpp"
 
-#include "core/matrix_4_4.hpp"
+#include "matrix_4_4.hpp"
 
 TEST_CASE("test_matrix_default_is_identity")
 {

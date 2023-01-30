@@ -1,7 +1,7 @@
 #ifndef NORMAL_3_HH
 #define NORMAL_3_HH
 
-#include <core/core.hpp>
+#include <core.hpp>
 
 template<typename T>
 class Normal3 {
@@ -51,9 +51,9 @@ std::ostream &operator<<(std::ostream &os, const Normal3<T> &n);
 template<typename T>
 Normal3<T> operator*(Float f, const Normal3<T> &v);
 
-typedef Normal3<int> Normal3i;
+typedef Normal3<int>   Normal3i;
 typedef Normal3<Float> Normal3f;
 
-#include <core/normal_3.inl>
+#include <normal_3.inl>
 
 #endif

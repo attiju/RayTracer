@@ -1,7 +1,7 @@
 #ifndef POINT_3_HH
 #define POINT_3_HH
 
-#include <core/core.hpp>
+#include <core.hpp>
 
 template<typename T>
 class Point3 {
@@ -44,9 +44,9 @@ std::ostream &operator<<(std::ostream &os, const Point3<T> &p);
 template<typename T>
 Point3<T> operator*(Float f, const Point3<T> &v);
 
-typedef Point3<int> Point3i;
+typedef Point3<int>   Point3i;
 typedef Point3<Float> Point3f;
 
-#include <core/point_3.inl>
+#include <point_3.inl>
 
 #endif

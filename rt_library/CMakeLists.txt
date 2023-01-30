@@ -3,6 +3,8 @@ add_library(rt_library)
 target_sources(
         rt_library
         PRIVATE
+        sources/ext/lodepng.cpp
+        sources/core/image.cpp
         sources/core/core.cpp
         sources/core/point_2.cpp
         sources/core/vector_2.cpp
@@ -12,11 +14,17 @@ target_sources(
         sources/core/ray.cpp
         sources/core/matrix_4_4.cpp
         sources/core/transform.cpp
+        sources/core/interaction.cpp
+        sources/core/shape.cpp
+        sources/shapes/sphere.cpp
 )
 
 target_include_directories(
         rt_library
         PUBLIC
-        includes
-        inline
+        includes/core
+        includes/shapes
+        includes/ext
+        inline/core
+        inline/shapes
 )

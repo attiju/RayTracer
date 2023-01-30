@@ -1,7 +1,7 @@
 #ifndef VECTOR_3_HH
 #define VECTOR_3_HH
 
-#include <core/core.hpp>
+#include <core.hpp>
 
 template<typename T>
 class Vector3 {
@@ -51,9 +51,24 @@ std::ostream &operator<<(std::ostream &os, const Vector3<T> &v);
 template<typename T>
 inline Vector3<T> operator*(Float f, const Vector3<T> &v);
 
-typedef Vector3<int> Vector3i;
+template<typename T>
+inline T dot(const Vector3<T> &a, const Vector3<T> &b);
+
+template<typename T>
+inline Vector3<T> cross(const Vector3<T> &a, const Vector3<T> &b);
+
+template<typename T>
+inline T length_squared(const Vector3<T> &a);
+
+template<typename T>
+inline T length(const Vector3<T> &a);
+
+template<typename T>
+inline Vector3<T> normalize(const Vector3<T> &a);
+
+typedef Vector3<int>   Vector3i;
 typedef Vector3<Float> Vector3f;
 
-#include <core/vector_3.inl>
+#include <vector_3.inl>
 
 #endif

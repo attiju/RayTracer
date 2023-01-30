@@ -1,11 +1,11 @@
 #ifndef TRANSFORM_HH
 #define TRANSFORM_HH
 
-#include <core/point_3.hpp>
-#include <core/vector_3.hpp>
-#include <core/normal_3.hpp>
-#include <core/ray.hpp>
-#include <core/matrix_4_4.hpp>
+#include <point_3.hpp>
+#include <vector_3.hpp>
+#include <normal_3.hpp>
+#include <ray.hpp>
+#include <matrix_4_4.hpp>
 
 class Transform {
 public:
@@ -52,6 +52,6 @@ inline Transform rotateY(Float theta);
 
 inline Transform rotateZ(Float theta);
 
-#include <core/transform.inl>
+#include <transform.inl>
 
 #endif

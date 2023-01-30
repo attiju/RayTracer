@@ -1,9 +1,9 @@
 #ifndef RAY_HH
 #define RAY_HH
 
-#include <core/core.hpp>
-#include <core/point_3.hpp>
-#include <core/vector_3.hpp>
+#include <core.hpp>
+#include <point_3.hpp>
+#include <vector_3.hpp>
 
 class Ray {
 public:
@@ -18,13 +18,13 @@ public:
     inline Point3f operator()() const;
 
 public:
-    Point3f o;
-    Vector3f d;
-    Float t;
+    Point3f       o;
+    Vector3f      d;
+    mutable Float t;
 };
 
 std::ostream &operator<<(std::ostream &os, const Ray &r);
 
-#include <core/ray.inl>
+#include <ray.inl>
 
 #endif

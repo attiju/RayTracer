@@ -42,6 +42,8 @@ class Shape;
 
 class Interaction;
 
+class SurfaceInteraction;
+
 inline Float radians(Float degrees);
 
 inline Float degrees(Float radians);

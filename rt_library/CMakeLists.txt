@@ -15,6 +15,7 @@ target_sources(
         sources/core/matrix_4_4.cpp
         sources/core/transform.cpp
         sources/core/interaction.cpp
+        sources/core/surface_interaction.cpp
         sources/core/shape.cpp
         sources/shapes/sphere.cpp
 )

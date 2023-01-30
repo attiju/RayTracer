@@ -2,10 +2,10 @@
 #define INTERACTION_HH
 
 #include <core.hpp>
-
-#include "point_3.hpp"
-#include "vector_3.hpp"
-#include "normal_3.hpp"
+#include <point_2.hpp>
+#include <point_3.hpp>
+#include <vector_3.hpp>
+#include <normal_3.hpp>
 
 class Interaction {
 public:

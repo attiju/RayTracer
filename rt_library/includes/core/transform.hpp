@@ -6,6 +6,7 @@
 #include <normal_3.hpp>
 #include <ray.hpp>
 #include <matrix_4_4.hpp>
+#include <surface_interaction.hpp>
 
 class Transform {
 public:
@@ -28,6 +29,8 @@ public:
     inline Normal3<T> operator()(const Normal3<T> &n) const;
 
     inline Ray operator()(const Ray &r) const;
+
+    inline SurfaceInteraction operator()(const SurfaceInteraction &interaction) const;
 
 public:
     inline bool operator==(const Transform &T) const;

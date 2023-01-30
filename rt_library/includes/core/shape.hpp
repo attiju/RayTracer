@@ -3,7 +3,7 @@
 
 #include <core.hpp>
 #include <transform.hpp>
-#include <interaction.hpp>
+#include <surface_interaction.hpp>
 
 class Shape {
 public:
@@ -12,7 +12,7 @@ public:
     inline virtual ~Shape();
 
 public:
-    virtual bool intersects(const Ray &ray, Interaction *intr) = 0;
+    virtual bool intersects(const Ray &ray, SurfaceInteraction *interaction) = 0;
 
     virtual bool intersects(const Ray &ray) = 0;
 

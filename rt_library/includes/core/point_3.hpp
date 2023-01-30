@@ -44,6 +44,12 @@ std::ostream &operator<<(std::ostream &os, const Point3<T> &p);
 template<typename T>
 Point3<T> operator*(Float f, const Point3<T> &v);
 
+template<typename T>
+inline T distance_squared(const Point3<T> &a, const Point3<T> &b);
+
+template<typename T>
+inline Float distance(const Point3<T> &a, const Point3<T> &b);
+
 typedef Point3<int>   Point3i;
 typedef Point3<Float> Point3f;
 

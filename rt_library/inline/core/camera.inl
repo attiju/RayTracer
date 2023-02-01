@@ -1,5 +1,5 @@
 Camera::Camera(
-        const Transform& camera_to_world,
+        const Transform &camera_to_world,
         Film *film,
         Float lens_radius,
         Float focal_distance,
@@ -28,5 +28,7 @@ Camera::Camera(
 
     raster_to_camera = scale(1, 1, -1)
             * inverse(perspective(field_of_view, 1e-2, 1000.))
-            * inverse(scale(film->resolution.x, film->resolution.y, 1) * scale(1 / (screen.p_max.x - screen.p_min.x), 1 / (screen.p_min.y - screen.p_max.y), 1) * translate({-screen.p_min.x, -screen.p_max.y, 0}));
+            * inverse(scale(film->resolution.x / (screen.p_max.x - screen.p_min.x),
+                            film->resolution.y / (screen.p_min.y - screen.p_max.y),
+                            1) * translate({-screen.p_min.x, -screen.p_max.y, 0}));
 }

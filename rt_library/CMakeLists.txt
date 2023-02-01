@@ -22,6 +22,7 @@ target_sources(
         sources/core/camera_sample.cpp
         sources/core/film.cpp
         sources/shapes/sphere.cpp
+        sources/utils/timer.cpp
 )
 
 target_include_directories(
@@ -30,6 +31,8 @@ target_include_directories(
         includes/core
         includes/shapes
         includes/ext
+        includes/utils
         inline/core
         inline/shapes
+        inline/utils
 )

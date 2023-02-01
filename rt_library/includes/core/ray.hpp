@@ -17,6 +17,8 @@ public:
 
     inline Point3f operator()() const;
 
+    inline Point3f operator()(Float dt) const;
+
 public:
     Point3f       o;
     Vector3f      d;

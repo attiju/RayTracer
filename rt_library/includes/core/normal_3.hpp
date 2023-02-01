@@ -51,6 +51,24 @@ std::ostream &operator<<(std::ostream &os, const Normal3<T> &n);
 template<typename T>
 Normal3<T> operator*(Float f, const Normal3<T> &v);
 
+template<typename T>
+inline Normal3<T> abs(const Normal3<T> &a);
+
+template<typename T>
+inline T dot(const Normal3<T> &a, const Normal3<T> &b);
+
+template<typename T>
+inline Normal3<T> cross(const Normal3<T> &a, const Normal3<T> &b);
+
+template<typename T>
+inline T length_squared(const Normal3<T> &a);
+
+template<typename T>
+inline T length(const Normal3<T> &a);
+
+template<typename T>
+inline Normal3<T> normalize(const Normal3<T> &a);
+
 typedef Normal3<int>   Normal3i;
 typedef Normal3<Float> Normal3f;
 

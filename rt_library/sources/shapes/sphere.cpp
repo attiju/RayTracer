@@ -1,6 +1,6 @@
 #include <sphere.hpp>
 
-bool Sphere::intersects(const Ray &ray, SurfaceInteraction *interaction)
+bool Sphere::intersects(const Ray &ray, Float *t_hit, SurfaceInteraction *interaction)
 {
     const Ray r = (*world_to_object)(ray);
 
@@ -9,21 +9,33 @@ bool Sphere::intersects(const Ray &ray, SurfaceInteraction *interaction)
     const Float c = dot(Vector3f(r.o), Vector3f(r.o)) - radius * radius;
 
     Float t0, t1;
+    if (!solve_quadratic(a, b, c, &t0, &t1)) {
+        return false;
+    }
 
-    bool hit = solve_quadratic(a, b, c, &t0, &t1);
+    if (t0 > r.t || t1 < 0) return false;
 
-    if (t0 < r.t && t0 > 0) r.t = t0;
-    else if (t1 < r.t && t1 > 0) r.t = t1;
+    Float tShapeHit = t0;
+    if (tShapeHit <= 0) {
+        tShapeHit = t1;
+        if (tShapeHit > ray.t) {
+            return false;
+        }
+    }
+
+    Point3f pHit = r(tShapeHit);
 
     SurfaceInteraction object_space_interaction = SurfaceInteraction(
-            r(),
+            pHit,
             -r.d,
-            Normal3f(normalize(Vector3f(r()))),
+            normalize(Normal3f(pHit)),
             Point2f()
     );
-    *interaction = (*object_to_world)(object_space_interaction);
 
-    return hit;
+    *interaction = (*object_to_world)(object_space_interaction);
+    *t_hit       = tShapeHit;
+
+    return true;
 }
 
 bool Sphere::intersects(const Ray &ray)
@@ -35,8 +47,19 @@ bool Sphere::intersects(const Ray &ray)
     const Float c = dot(Vector3f(r.o), Vector3f(r.o)) - radius * radius;
 
     Float t0, t1;
+    if (!solve_quadratic(a, b, c, &t0, &t1)) {
+        return false;
+    }
 
-    bool hit = solve_quadratic(a, b, c, &t0, &t1);
+    if (t0 > r.t || t1 < 0) return false;
 
-    return hit;
+    Float tShapeHit = t0;
+    if (tShapeHit <= 0) {
+        tShapeHit = t1;
+        if (tShapeHit > ray.t) {
+            return false;
+        }
+    }
+
+    return true;
 }

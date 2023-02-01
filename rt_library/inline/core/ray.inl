@@ -23,3 +23,8 @@ Point3f Ray::operator()() const
 {
     return o + t * d;
 }
+
+Point3f Ray::operator()(Float dt) const
+{
+    return o + dt * d;
+}

@@ -125,3 +125,39 @@ Normal3<T> operator*(Float f, const Normal3<T> &v)
 {
     return v * f;
 }
+
+
+template<typename T>
+inline Normal3<T> abs(const Normal3<T> &a) {
+    return Normal3<T>(std::abs(a.x), std::abs(a.y), std::abs(a.z));
+}
+
+template<typename T>
+T dot(const Normal3<T> &a, const Normal3<T> &b)
+{
+    return a.x * b.x + a.y * b.y + a.z * b.z;
+}
+
+template<typename T>
+Normal3<T> cross(const Normal3<T> &a, const Normal3<T> &b)
+{
+    return Normal3<T>(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
+}
+
+template<typename T>
+T length_squared(const Normal3<T> &a)
+{
+    return dot(a, a);
+}
+
+template<typename T>
+T length(const Normal3<T> &a)
+{
+    return std::sqrt(length_squared(a));
+}
+
+template<typename T>
+Normal3<T> normalize(const Normal3<T> &a)
+{
+    return a / length(a);
+}

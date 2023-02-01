@@ -26,7 +26,7 @@ Transform Transform::operator*(const Transform &T) const
 template<typename T>
 Point3<T> Transform::operator()(const Point3<T> &p) const
 {
-    T x = p.x, y = p.y, z = p.z;
+    T x  = p.x, y = p.y, z = p.z;
     T xp = m.m[0][0] * x + m.m[0][1] * y + m.m[0][2] * z + m.m[0][3];
     T yp = m.m[1][0] * x + m.m[1][1] * y + m.m[1][2] * z + m.m[1][3];
     T zp = m.m[2][0] * x + m.m[2][1] * y + m.m[2][2] * z + m.m[2][3];
@@ -41,7 +41,7 @@ Point3<T> Transform::operator()(const Point3<T> &p) const
 template<typename T>
 Vector3<T> Transform::operator()(const Vector3<T> &v) const
 {
-    T x = v.x, y = v.y, z = v.z;
+    T x  = v.x, y = v.y, z = v.z;
     T xp = m.m[0][0] * x + m.m[0][1] * y + m.m[0][2] * z;
     T yp = m.m[1][0] * x + m.m[1][1] * y + m.m[1][2] * z;
     T zp = m.m[2][0] * x + m.m[2][1] * y + m.m[2][2] * z;
@@ -52,7 +52,7 @@ Vector3<T> Transform::operator()(const Vector3<T> &v) const
 template<typename T>
 Normal3<T> Transform::operator()(const Normal3<T> &n) const
 {
-    T x = n.x, y = n.y, z = n.z;
+    T x  = n.x, y = n.y, z = n.z;
     T xp = m_inv.m[0][0] * x + m_inv.m[1][0] * y + m_inv.m[2][0] * z;
     T yp = m_inv.m[0][1] * x + m_inv.m[1][1] * y + m_inv.m[2][1] * z;
     T zp = m_inv.m[0][2] * x + m_inv.m[1][2] * y + m_inv.m[2][2] * z;
@@ -136,4 +136,33 @@ Transform rotateZ(Float theta)
 
     Matrix4x4 m(cosTheta, -sinTheta, 0, 0, sinTheta, cosTheta, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
     return Transform(m, transpose(m));
+}
+
+Transform lookAt(const Point3f &eye, const Point3f &target)
+{
+    Matrix4x4 M;
+
+    M.m[0][3] = eye.x;
+    M.m[1][3] = eye.y;
+    M.m[2][3] = eye.z;
+    M.m[3][3] = 1;
+
+    const Vector3f forward = normalize(eye - target);
+    const Vector3f right   = normalize(cross(Vector3f(0, 1, 0), forward));
+    const Vector3f up      = normalize(cross(forward, right));
+
+    M.m[0][0] = right.x;
+    M.m[1][0] = right.y;
+    M.m[2][0] = right.z;
+    M.m[3][0] = 0.;
+    M.m[0][1] = up.x;
+    M.m[1][1] = up.y;
+    M.m[2][1] = up.z;
+    M.m[3][1] = 0.;
+    M.m[0][2] = forward.x;
+    M.m[1][2] = forward.y;
+    M.m[2][2] = forward.z;
+    M.m[3][2] = 0.;
+
+    return Transform(M);
 }

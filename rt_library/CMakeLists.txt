@@ -11,12 +11,16 @@ target_sources(
         sources/core/point_3.cpp
         sources/core/vector_3.cpp
         sources/core/normal_3.cpp
+        sources/core/bounds_2.cpp
         sources/core/ray.cpp
         sources/core/matrix_4_4.cpp
         sources/core/transform.cpp
         sources/core/interaction.cpp
         sources/core/surface_interaction.cpp
         sources/core/shape.cpp
+        sources/core/camera.cpp
+        sources/core/camera_sample.cpp
+        sources/core/film.cpp
         sources/shapes/sphere.cpp
 )
 

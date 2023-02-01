@@ -55,6 +55,8 @@ inline Transform rotateY(Float theta);
 
 inline Transform rotateZ(Float theta);
 
+inline Transform lookAt(const Point3f& eye, const Point3f& target);
+
 #include <transform.inl>
 
 #endif

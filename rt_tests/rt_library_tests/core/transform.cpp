@@ -2,6 +2,15 @@
 
 #include "transform.hpp"
 
+template<class P, class V>
+inline bool almost_equal(const P &a, const V &b)
+{
+    auto eps  = 1e-4;
+    auto diff = abs(b - a);
+
+    return diff.x <= eps && diff.y <= eps && diff.z <= eps;
+}
+
 TEST_CASE("test_transform_default_is_identity")
 {
     auto T = Transform();
@@ -46,4 +55,17 @@ TEST_CASE("test_transform_composition")
     REQUIRE(T2(Vector3f(0, 0, 0)) == Vector3f(0, 0, 0));
     REQUIRE(T3(Vector3i(0, 0, -1)) == Vector3i(0, 1, 0));
     REQUIRE(T3(Normal3i(1, 1, 0)) == Normal3i(1, 0, 1));
+}
+
+TEST_CASE("test_transform_look_at")
+{
+    auto eye    = Point3f(0, 5, 0);
+    auto target = Point3f(5, 5, -5);
+
+    auto T = lookAt(eye, target);
+
+    REQUIRE(T(Vector3f(0, 0, -1)) == normalize(Vector3f(1, 0, -1)));
+    REQUIRE(T(Point3f(0, 0, 0)) == eye);
+    REQUIRE(almost_equal(T(Point3f(-1, 0, 0)), eye + normalize(Vector3f(-1, 0, -1))));
+    REQUIRE(almost_equal(T(Point3f(1, 0, 0)), eye + normalize(Vector3f(1, 0, 1))));
 }

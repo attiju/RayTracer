@@ -4,10 +4,16 @@
 
 #include "image.hpp"
 #include "interaction.hpp"
+#include "camera.hpp"
+#include "film.hpp"
 
 int main()
 {
-    auto o2w    = translate({0, 0, -50});
+    auto c2w    = lookAt({ 0, 0, 0 }, { 0, 0, -50 });
+    auto film   = Film({ 800, 600 }, 35);
+    auto camera = Camera(&c2w, &film);
+
+    auto o2w    = translate({0, 5, -50});
     auto w2o    = inverse(o2w);
     auto sphere = Sphere(&o2w, &w2o, 5);
 
@@ -21,7 +27,7 @@ int main()
 
     for (unsigned y = 0; y < height; y++) {
         for (unsigned x = 0; x < width; x++) {
-            auto r = Ray({0, 0, 0}, normalize(Vector3f(x - width * 0.5, height * 0.5 - y, -400)));
+            auto r = camera.next_ray(CameraSample({ Float(x), Float(y) }, { }));
 
             unsigned char c0 = 0;
             unsigned char c1 = 0;

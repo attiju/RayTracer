@@ -32,17 +32,26 @@ class Vector3;
 template<typename T>
 class Normal3;
 
+template<typename T>
+class Bounds2;
+
 class Ray;
 
 class Matrix4x4;
 
 class Transform;
 
-class Shape;
-
 class Interaction;
 
 class SurfaceInteraction;
+
+class Shape;
+
+class Camera;
+
+class CameraSample;
+
+class Film;
 
 inline Float radians(Float degrees);
 

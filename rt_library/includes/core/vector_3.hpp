@@ -52,6 +52,9 @@ template<typename T>
 inline Vector3<T> operator*(Float f, const Vector3<T> &v);
 
 template<typename T>
+inline Vector3<T> abs(const Vector3<T> &a);
+
+template<typename T>
 inline T dot(const Vector3<T> &a, const Vector3<T> &b);
 
 template<typename T>

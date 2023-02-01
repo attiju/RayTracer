@@ -127,6 +127,11 @@ Vector3<T> operator*(Float f, const Vector3<T> &v)
 }
 
 template<typename T>
+inline Vector3<T> abs(const Vector3<T> &a) {
+    return Vector3<T>(std::abs(a.x), std::abs(a.y), std::abs(a.z));
+}
+
+template<typename T>
 T dot(const Vector3<T> &a, const Vector3<T> &b)
 {
     return a.x * b.x + a.y * b.y + a.z * b.z;

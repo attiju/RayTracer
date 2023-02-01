@@ -21,6 +21,9 @@ public:
 template<typename T>
 std::ostream &operator<<(std::ostream &os, const Bounds2<T> &bounds2);
 
+typedef Bounds2<int>   Bounds2i;
+typedef Bounds2<Float> Bounds2f;
+
 #include <bounds_2.inl>
 
 #endif

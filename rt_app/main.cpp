@@ -10,8 +10,8 @@
 int main()
 {
     auto c2w    = lookAt({ 0, 0, 0 }, { 0, 0, -50 });
-    auto film   = Film({ 800, 600 }, 35);
-    auto camera = Camera(&c2w, &film);
+    auto film    = Film({ 800, 600 }, 35);
+    auto camera = Camera(c2w, &film, 0, 0, 55);
 
     auto o2w    = translate({0, 5, -50});
     auto w2o    = inverse(o2w);
@@ -20,7 +20,7 @@ int main()
     auto l = Point3f(25, 50, 0);
 
     //generate some image
-    unsigned width = 512, height = 512;
+    unsigned width = 600, height = 800;
     Image    image(width, height);
 
     SurfaceInteraction intr;
@@ -28,6 +28,8 @@ int main()
     for (unsigned y = 0; y < height; y++) {
         for (unsigned x = 0; x < width; x++) {
             auto r = camera.next_ray(CameraSample({ Float(x), Float(y) }, { }));
+
+            //std::cout << r << std::endl;
 
             unsigned char c0 = 0;
             unsigned char c1 = 0;

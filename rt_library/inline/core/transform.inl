@@ -166,3 +166,14 @@ Transform lookAt(const Point3f &eye, const Point3f &target)
 
     return Transform(M);
 }
+
+Transform perspective(Float fov, Float n, Float f) {
+    Matrix4x4 m(
+            1, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, f / (f - n), -f * n / (f - n),
+            0, 0, 1, 0);
+    Float inv_tan = 1 / std::tan(radians(fov) / 2);
+
+    return scale(inv_tan, inv_tan, 1) * Transform(m);
+}

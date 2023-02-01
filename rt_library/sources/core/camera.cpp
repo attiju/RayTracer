@@ -1,18 +1,9 @@
 #include <camera.hpp>
 
-Ray Camera::next_ray(const CameraSample &sample) const
-{
-    const Float w = 512;
-    const Float h = 512;
+Ray Camera::next_ray(const CameraSample &sample) const {
+    Point3f film_point   = Point3f(sample.film_point.x, sample.film_point.y, 0);
+    Point3f camera_point = raster_to_camera(film_point);
 
-    const Ray camera_space_ray = Ray(
-            {0, 0, 0},
-            normalize(Vector3f(
-                    sample.film_point.x - w * 0.5,
-                    h * 0.5 - sample.film_point.y,
-                    -400
-            ))
-    );
-
-    return (*camera_to_world)(camera_space_ray);
+    const Ray camera_space_ray = Ray({0, 0, 0}, normalize(Vector3f(camera_point)));
+    return camera_to_world(camera_space_ray);
 }

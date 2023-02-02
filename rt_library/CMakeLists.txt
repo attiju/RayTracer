@@ -20,7 +20,10 @@ target_sources(
         sources/core/shape.cpp
         sources/core/camera.cpp
         sources/core/camera_sample.cpp
+        sources/core/film_pixel.cpp
+        sources/core/film_tile.cpp
         sources/core/film.cpp
+        sources/core/spectrum.cpp
         sources/shapes/sphere.cpp
         sources/utils/timer.cpp
 )

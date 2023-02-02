@@ -12,7 +12,7 @@ public:
     inline virtual ~Shape();
 
 public:
-    virtual bool intersects(const Ray &ray, Float* t_hit, SurfaceInteraction *interaction) = 0;
+    virtual bool intersects(const Ray &ray, Float *t_hit, SurfaceInteraction *interaction) = 0;
 
     virtual bool intersects(const Ray &ray) = 0;
 

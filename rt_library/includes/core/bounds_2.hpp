@@ -2,6 +2,7 @@
 #define BOUNDS_2_HH
 
 #include <core.hpp>
+#include <vector_2.hpp>
 
 template<typename T>
 class Bounds2 {
@@ -11,6 +12,11 @@ public:
     inline explicit Bounds2(const Point2<T> &p);
 
     inline Bounds2(const Point2<T> &a, const Point2<T> &b);
+
+public:
+    inline Vector2<T> diagonal() const;
+
+    inline T area() const;
 
 public:
     Point2<T> p_min;

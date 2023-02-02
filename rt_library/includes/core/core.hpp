@@ -52,6 +52,12 @@ class Camera;
 
 class CameraSample;
 
+class Spectrum;
+
+class FilmPixel;
+
+class FilmTile;
+
 class Film;
 
 inline Float radians(Float degrees);

@@ -8,11 +8,8 @@
 #include "film.hpp"
 #include "timer.hpp"
 
-#include <omp.h>
-
-int main()
-{
-    int width = 1920, height = 1080;
+int main() {
+    int width = 800, height = 600;
 
     auto c2w    = lookAt({0, 5, 0}, {0, 5, -50});
     auto film   = Film({width, height}, 35);
@@ -32,23 +29,17 @@ int main()
     spheres.push_back(sphere);
     spheres.push_back(ground);
 
-    Image image(width, height);
-
     SurfaceInteraction intr;
 
-    auto timer = Timer();
-
-    //#pragma omp parallel for collapse(2) num_threads(omp_get_max_threads())
-    for (int y = 0; y < height; y++) {
+    std::cout << "rendering ..." << std::endl;
+    auto     timer = Timer();
+    for (int y     = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
+            auto &pixel = film[Point2i(x, y)];
             auto r = camera.next_ray(CameraSample({Float(x), Float(y)}, {}));
 
-            unsigned char c0 = 0;
-            unsigned char c1 = 0;
-            unsigned char c2 = 0;
-
-            bool hit = false;
-            for (auto& s: spheres) {
+            bool      hit = false;
+            for (auto &s: spheres) {
                 Float t_hit;
                 if (s.intersects(r, &t_hit, &intr)) {
                     r.t = t_hit;
@@ -56,20 +47,24 @@ int main()
                 }
             }
 
+            Spectrum color = {};
             if (hit) {
-                auto fact = 255.5 * max(0., dot(Vector3f(intr.n), normalize(l - intr.p))) * ((intr.n + Normal3f(1, 1, 1)) * 0.5);
-                c0 = static_cast<unsigned char>(fact.x);
-                c1 = static_cast<unsigned char>(fact.y);
-                c2 = static_cast<unsigned char>(fact.z);
+                color = max(0., dot(Vector3f(intr.n), normalize(l - intr.p))) * ((intr.n + Normal3f(1, 1, 1)) * 0.5);
             }
 
-            *image.at(x, y, 0) = c0;
-            *image.at(x, y, 1) = c1;
-            *image.at(x, y, 2) = c2;
+            pixel.color = color;
         }
     }
     std::cout << timer.elapsed_time() << "ms" << std::endl;
 
+
+    std::cout << "writing file ..." << std::endl;
+    Image    image(width, height);
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            image.set_at(x, y, film[Point2i(x, y)].color);
+        }
+    }
     image.encode("test.png");
 
     return 0;

@@ -55,7 +55,7 @@ inline Transform rotateY(Float theta);
 
 inline Transform rotateZ(Float theta);
 
-inline Transform lookAt(const Point3f& eye, const Point3f& target);
+inline Transform lookAt(const Point3f &eye, const Point3f &target);
 
 inline Transform perspective(Float fov, Float n, Float f);
 

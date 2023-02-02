@@ -38,6 +38,8 @@ public:
 
     inline Vector3<T> &operator/=(Float s);
 
+    inline T operator[](int i) const;
+
 public:
     inline bool operator==(const Vector3<T> &v) const;
 

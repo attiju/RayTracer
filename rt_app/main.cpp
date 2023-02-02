@@ -7,12 +7,15 @@
 #include "camera.hpp"
 #include "film.hpp"
 #include "timer.hpp"
+#include "gauss.hpp"
 
-int main() {
+int main()
+{
     int width = 800, height = 600;
 
     auto c2w    = lookAt({0, 5, 0}, {0, 5, -50});
-    auto film   = Film({width, height}, 35);
+    auto filter = std::unique_ptr<Filter>(new Gauss({3, 3}, 2.));
+    auto film   = Film({width, height}, std::move(filter), 35);
     auto camera = Camera(c2w, &film, 0, 0, 40);
 
     auto sphere_o2w = translate({0, 5, -50});
@@ -36,10 +39,10 @@ int main() {
     for (int y     = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
             auto &pixel = film[Point2i(x, y)];
-            auto r = camera.next_ray(CameraSample({Float(x), Float(y)}, {}));
+            auto r      = camera.next_ray(CameraSample({Float(x), Float(y)}, {}));
 
             bool      hit = false;
-            for (auto &s: spheres) {
+            for (auto &s : spheres) {
                 Float t_hit;
                 if (s.intersects(r, &t_hit, &intr)) {
                     r.t = t_hit;

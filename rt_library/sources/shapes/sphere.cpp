@@ -1,6 +1,7 @@
 #include <sphere.hpp>
 
-bool Sphere::intersects(const Ray &ray, Float *t_hit, SurfaceInteraction *interaction) {
+bool Sphere::intersects(const Ray &ray, Float *t_hit, SurfaceInteraction *interaction)
+{
     const Ray r = (*world_to_object)(ray);
 
     const Float a = dot(r.d, r.d);
@@ -37,7 +38,8 @@ bool Sphere::intersects(const Ray &ray, Float *t_hit, SurfaceInteraction *intera
     return true;
 }
 
-bool Sphere::intersects(const Ray &ray) {
+bool Sphere::intersects(const Ray &ray)
+{
     const Ray r = (*world_to_object)(ray);
 
     const Float a = dot(r.d, r.d);

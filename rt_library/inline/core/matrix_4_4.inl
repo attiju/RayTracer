@@ -1,5 +1,6 @@
 
-Matrix4x4::Matrix4x4() {
+Matrix4x4::Matrix4x4()
+{
     m[0][0] = m[1][1] = m[2][2] = m[3][3] = 1;
     m[0][1] = m[0][2] = m[0][3] = 0;
     m[1][0] = m[1][2] = m[1][3] = 0;
@@ -22,7 +23,8 @@ Matrix4x4::Matrix4x4(Float m00,
                      Float m30,
                      Float m31,
                      Float m32,
-                     Float m33) {
+                     Float m33)
+{
     m[0][0] = m00;
     m[0][1] = m01;
     m[0][2] = m02;
@@ -41,7 +43,8 @@ Matrix4x4::Matrix4x4(Float m00,
     m[3][3] = m33;
 }
 
-Matrix4x4 Matrix4x4::operator*(const Matrix4x4 &M) const {
+Matrix4x4 Matrix4x4::operator*(const Matrix4x4 &M) const
+{
     return Matrix4x4(
             m[0][0] * M.m[0][0] + m[0][1] * M.m[1][0] + m[0][2] * M.m[2][0] + m[0][3] * M.m[3][0],
             m[0][0] * M.m[0][1] + m[0][1] * M.m[1][1] + m[0][2] * M.m[2][1] + m[0][3] * M.m[3][1],
@@ -62,16 +65,18 @@ Matrix4x4 Matrix4x4::operator*(const Matrix4x4 &M) const {
     );
 }
 
-bool Matrix4x4::operator==(const Matrix4x4 &M) const {
+bool Matrix4x4::operator==(const Matrix4x4 &M) const
+{
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < 4; ++j) {
-            if (m[i][j] != M.m[i][j]) { return false; }
+            if (m[i][j] != M.m[i][j]) {return false;}
         }
     }
     return true;
 }
 
-Matrix4x4 inverse(const Matrix4x4 &M) {
+Matrix4x4 inverse(const Matrix4x4 &M)
+{
     Float A2323 = M.m[2][2] * M.m[3][3] - M.m[2][3] * M.m[3][2];
     Float A1323 = M.m[2][1] * M.m[3][3] - M.m[2][3] * M.m[3][1];
     Float A1223 = M.m[2][1] * M.m[3][2] - M.m[2][2] * M.m[3][1];
@@ -92,9 +97,9 @@ Matrix4x4 inverse(const Matrix4x4 &M) {
     Float A0112 = M.m[1][0] * M.m[2][1] - M.m[1][1] * M.m[2][0];
 
     Float det = M.m[0][0] * (M.m[1][1] * A2323 - M.m[1][2] * A1323 + M.m[1][3] * A1223)
-                - M.m[0][1] * (M.m[1][0] * A2323 - M.m[1][2] * A0323 + M.m[1][3] * A0223)
-                + M.m[0][2] * (M.m[1][0] * A1323 - M.m[1][1] * A0323 + M.m[1][3] * A0123)
-                - M.m[0][3] * (M.m[1][0] * A1223 - M.m[1][1] * A0223 + M.m[1][2] * A0123);
+            - M.m[0][1] * (M.m[1][0] * A2323 - M.m[1][2] * A0323 + M.m[1][3] * A0223)
+            + M.m[0][2] * (M.m[1][0] * A1323 - M.m[1][1] * A0323 + M.m[1][3] * A0123)
+            - M.m[0][3] * (M.m[1][0] * A1223 - M.m[1][1] * A0223 + M.m[1][2] * A0123);
 
     det = Float(1) / det;
 
@@ -118,7 +123,8 @@ Matrix4x4 inverse(const Matrix4x4 &M) {
     );
 }
 
-inline Matrix4x4 transpose(const Matrix4x4 &M) {
+inline Matrix4x4 transpose(const Matrix4x4 &M)
+{
     return Matrix4x4(
             M.m[0][0], M.m[1][0], M.m[2][0], M.m[3][0],
             M.m[0][1], M.m[1][1], M.m[2][1], M.m[3][1],

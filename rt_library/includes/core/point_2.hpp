@@ -21,6 +21,8 @@ public:
 
     inline Point2<T> operator+(const Vector2<T> &v) const;
 
+    inline Point2<T> operator-(const Vector2<T> &v) const;
+
     inline Vector2<T> operator-(const Point2<T> &v) const;
 
     inline Point2<T> operator*(Float f) const;
@@ -43,6 +45,19 @@ std::ostream &operator<<(std::ostream &os, const Point2<T> &p);
 
 template<typename T>
 Point2<T> operator*(Float f, const Point2<T> &v);
+
+template<typename T>
+Point2<T> max(const Point2<T> &a, const Point2<T> &b);
+
+template<typename T>
+Point2<T> min(const Point2<T> &a, const Point2<T> &b);
+
+template<typename T>
+Point2<T> ceil(const Point2<T> &p);
+
+template<typename T>
+Point2<T> floor(const Point2<T> &p);
+
 
 typedef Point2<int>   Point2i;
 typedef Point2<Float> Point2f;

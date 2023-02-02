@@ -58,6 +58,8 @@ class FilmPixel;
 
 class FilmTile;
 
+class Filter;
+
 class Film;
 
 inline Float radians(Float degrees);

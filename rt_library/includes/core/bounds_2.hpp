@@ -9,6 +9,9 @@ class Bounds2 {
 public:
     inline Bounds2();
 
+    template<typename U>
+    inline explicit Bounds2(const Bounds2<U> &b);
+
     inline explicit Bounds2(const Point2<T> &p);
 
     inline Bounds2(const Point2<T> &a, const Point2<T> &b);
@@ -26,6 +29,9 @@ public:
 
 template<typename T>
 std::ostream &operator<<(std::ostream &os, const Bounds2<T> &bounds2);
+
+template<typename T>
+Bounds2<T> intersect(const Bounds2<T> &b1, const Bounds2<T> &b2);
 
 typedef Bounds2<int>   Bounds2i;
 typedef Bounds2<Float> Bounds2f;

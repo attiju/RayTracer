@@ -3,7 +3,7 @@
 
 #include <shape.hpp>
 
-class Sphere : public Shape {
+class Sphere: public Shape {
 public:
     inline Sphere(const Transform *object_to_world, const Transform *world_to_object, Float radius);
 

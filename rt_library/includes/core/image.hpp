@@ -10,7 +10,7 @@ public:
     Image(unsigned width, unsigned height);
 
 public:
-    void set_at(unsigned i, unsigned j, const Spectrum& s);
+    void set_at(unsigned i, unsigned j, const Spectrum &s);
 
     void encode(const char *filename) const;
 

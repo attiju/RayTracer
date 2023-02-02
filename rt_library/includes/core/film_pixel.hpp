@@ -10,7 +10,7 @@ public:
 
 public:
     Spectrum color;
-    Float weight_sum;
+    Float    weight_sum;
 
 };
 

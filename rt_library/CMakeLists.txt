@@ -22,9 +22,11 @@ target_sources(
         sources/core/camera_sample.cpp
         sources/core/film_pixel.cpp
         sources/core/film_tile.cpp
+        sources/core/filter.cpp
         sources/core/film.cpp
         sources/core/spectrum.cpp
         sources/shapes/sphere.cpp
+        sources/filters/gauss.cpp
         sources/utils/timer.cpp
 )
 
@@ -33,9 +35,12 @@ target_include_directories(
         PUBLIC
         includes/core
         includes/shapes
+        includes/filters
         includes/ext
         includes/utils
+        includes/filters
         inline/core
         inline/shapes
         inline/utils
+        inline/filters
 )

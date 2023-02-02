@@ -31,7 +31,7 @@ public:
 
     inline Spectrum operator-(const Spectrum &v) const;
 
-    inline Spectrum operator*(const Spectrum& s) const;
+    inline Spectrum operator*(const Spectrum &s) const;
 
     inline Spectrum operator*(Float f) const;
 

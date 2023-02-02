@@ -4,7 +4,7 @@
 #include <core.hpp>
 #include <interaction.hpp>
 
-class SurfaceInteraction : public Interaction {
+class SurfaceInteraction: public Interaction {
 public:
     inline SurfaceInteraction();
 

@@ -5,12 +5,12 @@
 #include <point_2.hpp>
 
 class CameraSample {
-public:
-    inline CameraSample(const Point2f &filmPoint, const Point2f &lensPoint);
+ public:
+  inline CameraSample(const Point2f &filmPoint, const Point2f &lensPoint);
 
-public:
-    const Point2f film_point;
-    const Point2f lens_point;
+ public:
+  const Point2f film_point;
+  const Point2f lens_point;
 
 };
 

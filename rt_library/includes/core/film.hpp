@@ -11,28 +11,28 @@
 #define FILTER_TABLE_SIZE 16
 
 class Film {
-public:
-    inline Film(const Point2i &resolution, std::unique_ptr<Filter> filter, Float diagonal);
+ public:
+  inline Film(const Point2i &resolution, std::unique_ptr<Filter> filter, Float diagonal);
 
-public:
-    Bounds2f world_film_size() const;
+ public:
+  Bounds2f world_film_size() const;
 
-    FilmPixel &operator[](const Point2i &pixel);
+  FilmPixel &operator[](const Point2i &pixel);
 
-    std::unique_ptr<FilmTile> operator[](const Bounds2i &sample_bounds) const;
+  std::unique_ptr<FilmTile> operator[](const Bounds2i &sample_bounds) const;
 
-    void merge(std::unique_ptr<FilmTile> tile);
+  void merge(std::unique_ptr<FilmTile> tile);
 
-public:
-    const Point2i           resolution;
-    const Float             diagonal;
-    const Bounds2i          pixel_bounds;
-    std::unique_ptr<Filter> filter;
+ public:
+  const Point2i resolution;
+  const Float diagonal;
+  const Bounds2i pixel_bounds;
+  std::unique_ptr<Filter> filter;
 
-private:
-    Float                        table[FILTER_TABLE_SIZE * FILTER_TABLE_SIZE];
-    std::unique_ptr<FilmPixel[]> pixels;
-    std::mutex                   mutex;
+ private:
+  Float table[FILTER_TABLE_SIZE * FILTER_TABLE_SIZE];
+  std::unique_ptr<FilmPixel[]> pixels;
+  std::mutex mutex;
 };
 
 #include <film.inl>

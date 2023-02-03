@@ -8,24 +8,26 @@
 #include <film_pixel.hpp>
 
 class FilmTile {
-public:
-    inline FilmTile(const Bounds2i &bounds,
-                    const Vector2f &filterSize,
-                    const Vector2f &filterInvSize,
-                    const Float *filterTable,
-                    const int filterTableSize);
+ public:
+  inline FilmTile(const Bounds2i &bounds,
+                  const Vector2f &filterSize,
+                  const Vector2f &filterInvSize,
+                  const Float *filterTable,
+                  const int filterTableSize);
 
-public:
+ public:
 
-    void add_sample(const Point2f &p, const Spectrum &value);
+  void add_sample(const Point2f &p, const Spectrum &value, Float weight = 1);
 
-public:
-    const Bounds2i         bounds;
-    const Vector2f         filter_size;
-    const Vector2f         filter_inv_size;
-    const Float            *filterTable;
-    const int              filterTableSize;
-    std::vector<FilmPixel> pixels;
+  FilmPixel &operator[](const Point2i &p);
+
+ public:
+  const Bounds2i bounds;
+  const Vector2f filter_size;
+  const Vector2f filter_inv_size;
+  const Float *filter_table;
+  const int filter_table_size;
+  std::vector<FilmPixel> pixels;
 
 };
 

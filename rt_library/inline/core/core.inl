@@ -1,47 +1,43 @@
-Float radians(Float degrees)
-{
-    return pi * degrees / 180;
+Float radians(Float degrees) {
+  return pi * degrees / 180;
 }
 
-Float degrees(Float radians)
-{
-    return 180 * radians * inv_pi;
-}
-
-template<typename T>
-T min(T a, T b)
-{
-    return a < b ? a : b;
+Float degrees(Float radians) {
+  return 180 * radians * inv_pi;
 }
 
 template<typename T>
-T max(T a, T b)
-{
-    return a > b ? a : b;
+T min(T a, T b) {
+  return a < b ? a : b;
 }
 
-template<typename T, typename MIN, typename MAX>
-T clamp(T x, MIN m, MAX M)
-{
-    return x < m ? m : x > M ? M : x;
+template<typename T>
+T max(T a, T b) {
+  return a > b ? a : b;
 }
 
-bool solve_quadratic(Float a, Float b, Float c, Float *x0, Float *x1)
-{
-    Float d = b * b - 4 * a * c;
+template<typename T,
+    typename MIN,
+    typename MAX>
+T clamp(T x, MIN m, MAX M) {
+  return x < m ? m : x > M ? M : x;
+}
 
-    if (d < 0) return false;
-    d = std::sqrt(d);
+bool solve_quadratic(Float a, Float b, Float c, Float *x0, Float *x1) {
+  Float d = b * b - 4 * a * c;
 
-    double q;
-    if (b < 0) {
-        q = -.5 * (b - d);
-    } else {
-        q = -.5 * (b + d);
-    }
+  if (d < 0) { return false; }
+  d = std::sqrt(d);
 
-    *x0 = q / a;
-    *x1 = c / q;
-    if (*x0 > *x1) std::swap(*x0, *x1);
-    return true;
+  double q;
+  if (b < 0) {
+    q = -.5 * (b - d);
+  } else {
+    q = -.5 * (b + d);
+  }
+
+  *x0 = q / a;
+  *x1 = c / q;
+  if (*x0 > *x1) { std::swap(*x0, *x1); }
+  return true;
 }

@@ -1,5 +1,4 @@
 FilmPixel::FilmPixel()
-        : color(), weight_sum(0)
-{
+    : color(), weight_sum(0) {
 
 }

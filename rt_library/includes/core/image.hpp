@@ -6,18 +6,18 @@
 #include <lodepng.hpp>
 
 class Image {
-public:
-    Image(unsigned width, unsigned height);
+ public:
+  Image(unsigned width, unsigned height);
 
-public:
-    void set_at(unsigned i, unsigned j, const Spectrum &s);
+ public:
+  void set_at(unsigned i, unsigned j, const Spectrum &s);
 
-    void encode(const char *filename) const;
+  void encode(const char *filename) const;
 
-public:
-    const unsigned             width;
-    const unsigned             height;
-    std::vector<unsigned char> image;
+ public:
+  const unsigned width;
+  const unsigned height;
+  std::vector<unsigned char> image;
 };
 
 #endif

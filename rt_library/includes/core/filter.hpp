@@ -6,17 +6,17 @@
 #include <vector_2.hpp>
 
 class Filter {
-public:
-    inline Filter(const Vector2f &size);
+ public:
+  inline Filter(const Vector2f &size);
 
-    inline virtual ~Filter() = default;
+  inline virtual ~Filter() = default;
 
-public:
-    virtual Float operator()(const Point2f &p) const = 0;
+ public:
+  virtual Float operator()(const Point2f &p) const = 0;
 
-public:
-    const Vector2f size;
-    const Vector2f inv_size;
+ public:
+  const Vector2f size;
+  const Vector2f inv_size;
 };
 
 #include <filter.inl>

@@ -9,19 +9,19 @@
 #include <film.hpp>
 
 class Camera {
-public:
-    inline Camera(const Transform &camera_to_world, Film *film, Float lens_radius, Float focal_distance,
-                  Float field_of_view);
+ public:
+  inline Camera(const Transform &camera_to_world, Film *film, Float lens_radius, Float focal_distance,
+                Float field_of_view);
 
-public:
-    Ray next_ray(const CameraSample &sample) const;
+ public:
+  Ray next_ray(const CameraSample &sample) const;
 
-public:
-    Transform camera_to_world;
-    Transform raster_to_camera;
-    Film      *film;
-    Float     lens_radius;
-    Float     focal_distance;
+ public:
+  Transform camera_to_world;
+  Transform raster_to_camera;
+  Film *film;
+  Float lens_radius;
+  Float focal_distance;
 
 };
 

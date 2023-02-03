@@ -5,12 +5,12 @@
 #include <spectrum.hpp>
 
 class FilmPixel {
-public:
-    inline FilmPixel();
+ public:
+  inline FilmPixel();
 
-public:
-    Spectrum color;
-    Float    weight_sum;
+ public:
+  Spectrum color;
+  Float weight_sum;
 
 };
 
